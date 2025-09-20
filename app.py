@@ -10,6 +10,40 @@ import config
 
 app = Flask(__name__)
 
+# Allow embedding inside GoHighLevel (GHL) and your own domains
+@app.after_request
+def allow_ghl_embed(resp):
+    # Remove legacy frame-blocking header if present
+    try:
+        resp.headers.pop('X-Frame-Options', None)
+    except Exception:
+        pass
+
+    # Permit framing from GHL + HighLevel hosts and (optionally) your custom course domain
+    # Replace courses.yourbrand.com with your actual host if you have one, or remove it.
+    allowed_ancestors = (
+        "frame-ancestors 'self' "
+        "https://*.gohighlevel.com https://*.myhighlevel.com "
+        "https://*.hlpages.com https://*.highlevel.com https://courses.yourbrand.com"
+    )
+
+    existing = resp.headers.get('Content-Security-Policy', '')
+    if 'frame-ancestors' in existing:
+        # If you already set CSP elsewhere, strip the old frame-ancestors and append ours
+        import re
+        csp = re.sub(r"frame-ancestors [^;]*;?\s*", "", existing).strip()
+        if csp and not csp.endswith(";"):
+            csp += "; "
+        resp.headers['Content-Security-Policy'] = csp + allowed_ancestors
+    else:
+        # Simple case: set it fresh
+        resp.headers['Content-Security-Policy'] = allowed_ancestors
+
+    # Helps some older setups (non-standard but harmless alongside CSP)
+    resp.headers['X-Frame-Options'] = 'ALLOWALL'
+    return resp
+
+
 # ---------------- helpers ----------------
 def clean_query(name: str):
     name = re.sub(r"[^A-Za-z0-9 ]+", " ", name).strip().lower()
