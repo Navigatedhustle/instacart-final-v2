@@ -1,0 +1,37 @@
+
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ BRAND_NAME }}</title>
+  <link rel="icon" href="{{ FAVICON }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{ --accent: {{ ACCENT|default('#f97316') }}; }
+    body{background: radial-gradient(1200px 600px at 20% -10%, rgba(249,115,22,.25), transparent), 
+                     radial-gradient(900px 500px at 90% 10%, rgba(14,165,233,.18), transparent), #0b1220; color:#e5e7eb}
+    .glass{backdrop-filter: blur(8px); background: rgba(15, 23, 42, 0.7); border:1px solid rgba(148,163,184,.25); border-radius:1rem}
+    .btn-primary{background:var(--accent);color:#0b1220;border-radius:0.9rem;padding:0.9rem 1.2rem;font-weight:700;
+                 box-shadow:0 14px 32px rgba(249,115,22,.35); transition: transform .12s ease, box-shadow .12s ease}
+    .btn-primary:hover{transform: translateY(-1px); box-shadow:0 20px 40px rgba(249,115,22,.45)}
+    .btn-secondary{border:1px solid #334155;border-radius:.75rem;padding:.5rem .75rem;color:#e5e7eb; transition: background .12s}
+    .btn-secondary:hover{background:#0f172a}
+    .card{background:rgba(15,23,42,.9); border:1px solid #1f2a44; border-radius:1rem; padding:1rem; box-shadow: 0 10px 30px rgba(0,0,0,.25)}
+    .checkbox{width:1rem;height:1rem;border:1px solid #475569;border-radius:.25rem;background:#0b1220}
+  </style>
+</head>
+<body class="min-h-screen">
+<header class="max-w-7xl mx-auto py-6 px-4 flex items-center justify-between">
+  <div class="flex items-center gap-3">
+    <img src="{{ FAVICON }}" alt="logo" class="w-8 h-8 rounded">
+    <div class="font-extrabold text-xl tracking-tight">{{ BRAND_NAME }}</div>
+  </div>
+  <nav class="text-sm opacity-80 flex items-center gap-6"><!-- Terms removed per request --></nav>
+</header>
+<main class="max-w-7xl mx-auto px-4 pb-12">
+  {% block content %}{% endblock %}
+  <footer class="py-10 text-center opacity-60 text-sm">© {{ now.year }} {{ BRAND_NAME }}</footer>
+</main>
+</body>
+</html>

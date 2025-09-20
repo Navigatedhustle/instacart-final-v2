@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="glass p-4 flex items-center justify-between">
+  <div>
+    <h1 class="text-2xl font-bold">Your 7‑Day Plan</h1>
+    <p class="opacity-70 text-sm">Calories/day target: {{ plan.calories }}, Protein target: {{ plan.protein_target }}g, Budget: ${{ plan.budget }}{% if plan.low_carb %}, Diet: Low‑carb{% endif %}</p>
+  </div>
+  <div class="text-sm flex items-center gap-2">
+    <a href="/export/plan.pdf" class="btn-secondary">Plan PDF</a>
+    <a href="/export/grocery.pdf" class="btn-secondary">Grocery PDF</a>
+  </div>
+</div>
+
+<h2 class="text-lg font-semibold mt-5">Meals</h2>
+<div class="grid md:grid-cols-2 gap-4">
+  {% for day in plan.days %}
+  <div class="card">
+    <div class="flex items-center justify-between mb-2">
+      <div class="font-semibold">Day {{ loop.index }}</div>
+      <div class="opacity-70 text-sm">{{ day.total_protein }}g protein, ~{{ day.total_calories|int }} kcal</div>
+    </div>
+    <div class="space-y-2">
+      {% for m in day.meals %}
+      <div class="card">
+        <div class="flex items-center justify-between">
+          <div class="font-medium">{{ m.title }}</div>
+          <button class="btn-secondary text-xs">Swap</button>
+        </div>
+        <div class="opacity-70 text-xs mt-1">{{ m.macros.P }}g P • {{ m.macros.C }}g C • {{ m.macros.F }}g F • {{ m.macros.K }} kcal</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h2 class="text-lg font-semibold mt-8">Smart Grocery List</h2>
+<p class="text-sm opacity-70 mb-2">Grouped by aisle. Check items as you add them to cart.</p>
+<div class="grid md:grid-cols-2 gap-3">
+  {% for aisle, items in plan.grocery.items() %}
+  <div class="card">
+    <div class="font-semibold mb-2">{{ aisle }}</div>
+    <ul class="space-y-1">
+      {% for it in items %}
+      <li class="text-sm flex items-center justify-between gap-2">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="checkbox">
+          <span>{{ it.name }} <span class="opacity-50">({{ it.package }})</span></span>
+        </label>
+        <a class="btn-secondary text-xs" href="{{ it.instacart_url }}" target="_blank" rel="noopener">Open in Instacart</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

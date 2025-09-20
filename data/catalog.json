@@ -1,0 +1,1918 @@
+{
+  "rte": [
+    {
+      "name": "Pre-cooked chicken breast strips",
+      "package": "12 oz",
+      "portion": "4 oz",
+      "macros": {
+        "P": 25,
+        "C": 1,
+        "F": 3,
+        "K": 140
+      },
+      "price": 6.99,
+      "aisle": "Deli",
+      "insta_query": "Pre-cooked chicken breast strips"
+    },
+    {
+      "name": "Deli turkey extra-lean",
+      "package": "6 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 18,
+        "C": 2,
+        "F": 1,
+        "K": 100
+      },
+      "price": 3.29,
+      "aisle": "Deli",
+      "insta_query": "Deli turkey extra-lean"
+    },
+    {
+      "name": "Tuna packet (water)",
+      "package": "2.6 oz",
+      "portion": "1 packet",
+      "macros": {
+        "P": 18,
+        "C": 0,
+        "F": 1,
+        "K": 90
+      },
+      "price": 1.79,
+      "aisle": "Center Aisle",
+      "insta_query": "Tuna packet water"
+    },
+    {
+      "name": "Fairlife Core shake RTD",
+      "package": "11 oz",
+      "portion": "1 bottle",
+      "macros": {
+        "P": 26,
+        "C": 3,
+        "F": 2,
+        "K": 150
+      },
+      "price": 2.99,
+      "aisle": "Beverages",
+      "insta_query": "Fairlife Core shake RTD"
+    },
+    {
+      "name": "Skyr 0% plain 5oz",
+      "package": "5 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 17,
+        "C": 6,
+        "F": 0,
+        "K": 110
+      },
+      "price": 1.49,
+      "aisle": "Dairy",
+      "insta_query": "Skyr 0% plain"
+    },
+    {
+      "name": "Greek yogurt 0% 32 oz",
+      "package": "32 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 23,
+        "C": 9,
+        "F": 0,
+        "K": 140
+      },
+      "price": 5.99,
+      "aisle": "Dairy",
+      "insta_query": "Greek yogurt 0% 32 oz"
+    },
+    {
+      "name": "Cottage cheese 2% 5oz",
+      "package": "5 oz",
+      "portion": "5 oz",
+      "macros": {
+        "P": 15,
+        "C": 6,
+        "F": 3,
+        "K": 120
+      },
+      "price": 1.39,
+      "aisle": "Dairy",
+      "insta_query": "Cottage cheese 2% 5oz"
+    },
+    {
+      "name": "Egg whites 1/2 cup",
+      "package": "16 oz",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 11,
+        "C": 0,
+        "F": 0,
+        "K": 55
+      },
+      "price": 0.8,
+      "aisle": "Dairy",
+      "insta_query": "egg whites"
+    },
+    {
+      "name": "String cheese (light)",
+      "package": "1 stick",
+      "portion": "1 stick",
+      "macros": {
+        "P": 7,
+        "C": 1,
+        "F": 3,
+        "K": 80
+      },
+      "price": 0.6,
+      "aisle": "Dairy",
+      "insta_query": "light string cheese"
+    },
+    {
+      "name": "Microwavable jasmine rice cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 5,
+        "C": 45,
+        "F": 1,
+        "K": 210
+      },
+      "price": 1.59,
+      "aisle": "Center Aisle",
+      "insta_query": "Microwavable jasmine rice cup"
+    },
+    {
+      "name": "Brown rice microwavable cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 5,
+        "C": 46,
+        "F": 2,
+        "K": 220
+      },
+      "price": 1.59,
+      "aisle": "Center Aisle",
+      "insta_query": "Brown rice microwave cup"
+    },
+    {
+      "name": "High-fiber wraps (8 in)",
+      "package": "1 wrap",
+      "portion": "1 wrap",
+      "macros": {
+        "P": 9,
+        "C": 18,
+        "F": 3,
+        "K": 140
+      },
+      "price": 0.99,
+      "aisle": "Bakery",
+      "insta_query": "High fiber wrap 8 inch"
+    },
+    {
+      "name": "Oats (quick) 40g",
+      "package": "40 g",
+      "portion": "40 g",
+      "macros": {
+        "P": 5,
+        "C": 27,
+        "F": 3,
+        "K": 150
+      },
+      "price": 0.35,
+      "aisle": "Center Aisle",
+      "insta_query": "quick oats 40g"
+    },
+    {
+      "name": "Rice cakes (2)",
+      "package": "2 cakes",
+      "portion": "2 cakes",
+      "macros": {
+        "P": 2,
+        "C": 14,
+        "F": 0,
+        "K": 70
+      },
+      "price": 0.3,
+      "aisle": "Center Aisle",
+      "insta_query": "rice cakes"
+    },
+    {
+      "name": "Protein oatmeal cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 20,
+        "C": 35,
+        "F": 6,
+        "K": 300
+      },
+      "price": 2.49,
+      "aisle": "Center Aisle",
+      "insta_query": "Protein oatmeal cup"
+    },
+    {
+      "name": "Protein granola 1/2 cup",
+      "package": "1/2 cup",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 14,
+        "C": 28,
+        "F": 5,
+        "K": 250
+      },
+      "price": 1.4,
+      "aisle": "Center Aisle",
+      "insta_query": "protein granola"
+    },
+    {
+      "name": "Almonds 1 oz pack",
+      "package": "1 oz",
+      "portion": "1 pack",
+      "macros": {
+        "P": 6,
+        "C": 5,
+        "F": 14,
+        "K": 160
+      },
+      "price": 0.99,
+      "aisle": "Center Aisle",
+      "insta_query": "Almonds 1 oz pack"
+    },
+    {
+      "name": "Peanut butter 1 tbsp",
+      "package": "1 tbsp",
+      "portion": "1 tbsp",
+      "macros": {
+        "P": 4,
+        "C": 3,
+        "F": 8,
+        "K": 95
+      },
+      "price": 0.2,
+      "aisle": "Center Aisle",
+      "insta_query": "peanut butter 1 tbsp"
+    },
+    {
+      "name": "Olive oil 1 tbsp",
+      "package": "1 tbsp",
+      "portion": "1 tbsp",
+      "macros": {
+        "P": 0,
+        "C": 0,
+        "F": 14,
+        "K": 120
+      },
+      "price": 0.25,
+      "aisle": "Center Aisle",
+      "insta_query": "olive oil 1 tbsp"
+    },
+    {
+      "name": "Avocado half",
+      "package": "1/2 avocado",
+      "portion": "1/2",
+      "macros": {
+        "P": 1,
+        "C": 6,
+        "F": 12,
+        "K": 120
+      },
+      "price": 0.75,
+      "aisle": "Produce",
+      "insta_query": "avocado"
+    },
+    {
+      "name": "Cauliflower rice (steam bag)",
+      "package": "10 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 3,
+        "C": 5,
+        "F": 0,
+        "K": 40
+      },
+      "price": 2.29,
+      "aisle": "Frozen",
+      "insta_query": "Cauliflower rice steam bag"
+    },
+    {
+      "name": "Steam-in-bag broccoli",
+      "package": "12 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 3,
+        "C": 6,
+        "F": 0,
+        "K": 35
+      },
+      "price": 1.59,
+      "aisle": "Frozen",
+      "insta_query": "steam in bag broccoli"
+    },
+    {
+      "name": "Banana",
+      "package": "1 banana",
+      "portion": "1",
+      "macros": {
+        "P": 1,
+        "C": 27,
+        "F": 0,
+        "K": 105
+      },
+      "price": 0.25,
+      "aisle": "Produce",
+      "insta_query": "banana"
+    },
+    {
+      "name": "Black beans (canned) 1/2 cup",
+      "package": "1/2 cup",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 8,
+        "C": 21,
+        "F": 0,
+        "K": 120
+      },
+      "price": 0.55,
+      "aisle": "Center Aisle",
+      "insta_query": "canned black beans"
+    },
+    {
+      "name": "Chickpeas (canned) 1/2 cup",
+      "package": "1/2 cup",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 7,
+        "C": 22,
+        "F": 2,
+        "K": 130
+      },
+      "price": 0.55,
+      "aisle": "Center Aisle",
+      "insta_query": "canned chickpeas"
+    },
+    {
+      "name": "Sardines in water (1 tin)",
+      "package": "1 tin",
+      "portion": "1 tin",
+      "macros": {
+        "P": 23,
+        "C": 0,
+        "F": 10,
+        "K": 190
+      },
+      "price": 1.89,
+      "aisle": "Center Aisle",
+      "insta_query": "sardines in water"
+    },
+    {
+      "name": "Ahi tuna steaks (frozen)",
+      "package": "6 oz",
+      "portion": "6 oz",
+      "macros": {
+        "P": 38,
+        "C": 0,
+        "F": 2,
+        "K": 180
+      },
+      "price": 6.99,
+      "aisle": "Frozen",
+      "insta_query": "Ahi tuna steaks frozen"
+    },
+    {
+      "name": "Rotisserie chicken (pulled) 5 oz",
+      "package": "5 oz",
+      "portion": "5 oz",
+      "macros": {
+        "P": 40,
+        "C": 0,
+        "F": 9,
+        "K": 250
+      },
+      "price": 4.5,
+      "aisle": "Deli",
+      "insta_query": "rotisserie chicken pulled"
+    },
+    {
+      "name": "Canned chicken breast 5 oz",
+      "package": "5 oz",
+      "portion": "1 can",
+      "macros": {
+        "P": 30,
+        "C": 0,
+        "F": 3,
+        "K": 160
+      },
+      "price": 2.29,
+      "aisle": "Center Aisle",
+      "insta_query": "canned chicken breast"
+    },
+    {
+      "name": "Smoked salmon 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 16,
+        "C": 0,
+        "F": 5,
+        "K": 160
+      },
+      "price": 4.19,
+      "aisle": "Deli",
+      "insta_query": "smoked salmon"
+    },
+    {
+      "name": "Shrimp (cooked) 4 oz",
+      "package": "4 oz",
+      "portion": "4 oz",
+      "macros": {
+        "P": 24,
+        "C": 1,
+        "F": 1,
+        "K": 120
+      },
+      "price": 4.1,
+      "aisle": "Meat/Seafood",
+      "insta_query": "cooked shrimp 4 oz"
+    },
+    {
+      "name": "Turkey meatballs (lean) 4 pcs",
+      "package": "4 pieces",
+      "portion": "4 pieces",
+      "macros": {
+        "P": 22,
+        "C": 6,
+        "F": 8,
+        "K": 220
+      },
+      "price": 2.99,
+      "aisle": "Frozen",
+      "insta_query": "lean turkey meatballs"
+    },
+    {
+      "name": "Grilled chicken skewers 2 pcs",
+      "package": "2 skewers",
+      "portion": "2 skewers",
+      "macros": {
+        "P": 28,
+        "C": 2,
+        "F": 5,
+        "K": 190
+      },
+      "price": 4.59,
+      "aisle": "Deli",
+      "insta_query": "grilled chicken skewers"
+    },
+    {
+      "name": "Chicken sausage (lean) 1 link",
+      "package": "1 link",
+      "portion": "1 link",
+      "macros": {
+        "P": 14,
+        "C": 1,
+        "F": 7,
+        "K": 170
+      },
+      "price": 1.99,
+      "aisle": "Meat/Seafood",
+      "insta_query": "lean chicken sausage"
+    },
+    {
+      "name": "Turkey pepperoni 1 oz",
+      "package": "1 oz",
+      "portion": "1 oz",
+      "macros": {
+        "P": 9,
+        "C": 1,
+        "F": 4,
+        "K": 70
+      },
+      "price": 1.1,
+      "aisle": "Deli",
+      "insta_query": "turkey pepperoni"
+    },
+    {
+      "name": "Light mozzarella 1 oz",
+      "package": "1 oz",
+      "portion": "1 oz",
+      "macros": {
+        "P": 7,
+        "C": 1,
+        "F": 3,
+        "K": 70
+      },
+      "price": 0.8,
+      "aisle": "Dairy",
+      "insta_query": "light mozzarella cheese stick"
+    },
+    {
+      "name": "Seitan 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 21,
+        "C": 4,
+        "F": 2,
+        "K": 140
+      },
+      "price": 1.9,
+      "aisle": "Deli",
+      "insta_query": "seitan 3 oz"
+    },
+    {
+      "name": "Tofu extra-firm 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 10,
+        "C": 3,
+        "F": 6,
+        "K": 110
+      },
+      "price": 0.85,
+      "aisle": "Deli",
+      "insta_query": "tofu extra firm"
+    },
+    {
+      "name": "Tempeh 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 16,
+        "C": 12,
+        "F": 9,
+        "K": 190
+      },
+      "price": 1.2,
+      "aisle": "Deli",
+      "insta_query": "tempeh 3 oz"
+    },
+    {
+      "name": "Edamame (shelled) 1 cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 17,
+        "C": 12,
+        "F": 8,
+        "K": 190
+      },
+      "price": 1.39,
+      "aisle": "Frozen",
+      "insta_query": "edamame shelled"
+    },
+    {
+      "name": "Banza chickpea pasta (cooked) 2 oz dry",
+      "package": "2 oz dry",
+      "portion": "1 bowl",
+      "macros": {
+        "P": 20,
+        "C": 36,
+        "F": 3,
+        "K": 260
+      },
+      "price": 1.2,
+      "aisle": "Center Aisle",
+      "insta_query": "Banza chickpea pasta"
+    },
+    {
+      "name": "Edamame pasta (cooked) 2 oz dry",
+      "package": "2 oz dry",
+      "portion": "1 bowl",
+      "macros": {
+        "P": 24,
+        "C": 32,
+        "F": 2,
+        "K": 250
+      },
+      "price": 1.4,
+      "aisle": "Center Aisle",
+      "insta_query": "edamame pasta"
+    },
+    {
+      "name": "Egglife egg white wrap",
+      "package": "1 wrap",
+      "portion": "1 wrap",
+      "macros": {
+        "P": 5,
+        "C": 0,
+        "F": 0,
+        "K": 25
+      },
+      "price": 0.95,
+      "aisle": "Deli",
+      "insta_query": "Egglife egg white wrap"
+    },
+    {
+      "name": "Mission Carb Balance tortilla 1",
+      "package": "1 tortilla",
+      "portion": "1 tortilla",
+      "macros": {
+        "P": 5,
+        "C": 19,
+        "F": 4,
+        "K": 130
+      },
+      "price": 0.8,
+      "aisle": "Bakery",
+      "insta_query": "Mission Carb Balance tortilla"
+    },
+    {
+      "name": "Kodiak protein waffle (2)",
+      "package": "2 waffles",
+      "portion": "2 waffles",
+      "macros": {
+        "P": 12,
+        "C": 30,
+        "F": 6,
+        "K": 240
+      },
+      "price": 1.8,
+      "aisle": "Frozen",
+      "insta_query": "Kodiak waffles"
+    },
+    {
+      "name": "Protein French toast (premade) 2 slices",
+      "package": "2 slices",
+      "portion": "2 slices",
+      "macros": {
+        "P": 18,
+        "C": 32,
+        "F": 4,
+        "K": 260
+      },
+      "price": 2.2,
+      "aisle": "Bakery",
+      "insta_query": "protein french toast premade"
+    },
+    {
+      "name": "Premier Protein shake",
+      "package": "11 oz",
+      "portion": "1 bottle",
+      "macros": {
+        "P": 30,
+        "C": 4,
+        "F": 3,
+        "K": 160
+      },
+      "price": 2.49,
+      "aisle": "Beverages",
+      "insta_query": "Premier Protein shake"
+    },
+    {
+      "name": "CorePower Elite 42g",
+      "package": "14 oz",
+      "portion": "1 bottle",
+      "macros": {
+        "P": 42,
+        "C": 7,
+        "F": 3,
+        "K": 240
+      },
+      "price": 3.49,
+      "aisle": "Beverages",
+      "insta_query": "CorePower Elite 42g"
+    },
+    {
+      "name": "OWYN protein shake",
+      "package": "12 oz",
+      "portion": "1 bottle",
+      "macros": {
+        "P": 20,
+        "C": 10,
+        "F": 7,
+        "K": 180
+      },
+      "price": 2.99,
+      "aisle": "Beverages",
+      "insta_query": "OWYN protein shake"
+    },
+    {
+      "name": "Ratio Protein yogurt cup",
+      "package": "5.3 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 25,
+        "C": 6,
+        "F": 3,
+        "K": 170
+      },
+      "price": 1.79,
+      "aisle": "Dairy",
+      "insta_query": "ratio protein yogurt"
+    },
+    {
+      "name": "Chobani Zero Sugar yogurt",
+      "package": "5.3 oz",
+      "portion": "1 cup",
+      "macros": {
+        "P": 12,
+        "C": 5,
+        "F": 0,
+        "K": 70
+      },
+      "price": 1.25,
+      "aisle": "Dairy",
+      "insta_query": "Chobani Zero Sugar yogurt"
+    },
+    {
+      "name": "Yasso Greek yogurt bar",
+      "package": "1 bar",
+      "portion": "1 bar",
+      "macros": {
+        "P": 5,
+        "C": 15,
+        "F": 2,
+        "K": 100
+      },
+      "price": 1.1,
+      "aisle": "Frozen",
+      "insta_query": "Yasso Greek yogurt bar"
+    },
+    {
+      "name": "Halo Top pint (1/2 cup)",
+      "package": "1/2 cup",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 6,
+        "C": 16,
+        "F": 2,
+        "K": 110
+      },
+      "price": 1.25,
+      "aisle": "Frozen",
+      "insta_query": "Halo Top ice cream"
+    },
+    {
+      "name": "Quest protein chips bag",
+      "package": "1 bag",
+      "portion": "1 bag",
+      "macros": {
+        "P": 19,
+        "C": 5,
+        "F": 6,
+        "K": 140
+      },
+      "price": 2.49,
+      "aisle": "Center Aisle",
+      "insta_query": "Quest protein chips"
+    },
+    {
+      "name": "Pure Protein bar",
+      "package": "1 bar",
+      "portion": "1 bar",
+      "macros": {
+        "P": 20,
+        "C": 17,
+        "F": 7,
+        "K": 200
+      },
+      "price": 1.79,
+      "aisle": "Center Aisle",
+      "insta_query": "Pure Protein bar"
+    },
+    {
+      "name": "Magic Spoon protein cereal 1 cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 13,
+        "C": 14,
+        "F": 7,
+        "K": 190
+      },
+      "price": 2.0,
+      "aisle": "Center Aisle",
+      "insta_query": "Magic Spoon cereal"
+    },
+    {
+      "name": "Fairlife skim milk 1 cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 13,
+        "C": 6,
+        "F": 0,
+        "K": 80
+      },
+      "price": 0.9,
+      "aisle": "Dairy",
+      "insta_query": "Fairlife skim milk"
+    },
+    {
+      "name": "Protein pudding cup (chocolate)",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 15,
+        "C": 7,
+        "F": 2,
+        "K": 120
+      },
+      "price": 1.79,
+      "aisle": "Dairy",
+      "insta_query": "protein pudding cup"
+    },
+    {
+      "name": "Cottage cheese 1% 1 cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 28,
+        "C": 6,
+        "F": 2,
+        "K": 160
+      },
+      "price": 2.2,
+      "aisle": "Dairy",
+      "insta_query": "cottage cheese 1%"
+    },
+    {
+      "name": "Egg bites (2)",
+      "package": "2 bites",
+      "portion": "2 bites",
+      "macros": {
+        "P": 17,
+        "C": 3,
+        "F": 9,
+        "K": 190
+      },
+      "price": 2.69,
+      "aisle": "Deli",
+      "insta_query": "egg bites"
+    },
+    {
+      "name": "Lean beef jerky 1 oz",
+      "package": "1 oz",
+      "portion": "1 oz",
+      "macros": {
+        "P": 12,
+        "C": 3,
+        "F": 1,
+        "K": 80
+      },
+      "price": 2.1,
+      "aisle": "Center Aisle",
+      "insta_query": "lean beef jerky"
+    },
+    {
+      "name": "Beef biltong 1 oz",
+      "package": "1 oz",
+      "portion": "1 oz",
+      "macros": {
+        "P": 16,
+        "C": 0,
+        "F": 2,
+        "K": 90
+      },
+      "price": 2.3,
+      "aisle": "Center Aisle",
+      "insta_query": "beef biltong"
+    },
+    {
+      "name": "Egg white omelet cup (microwave)",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 20,
+        "C": 5,
+        "F": 3,
+        "K": 140
+      },
+      "price": 2.49,
+      "aisle": "Frozen",
+      "insta_query": "egg white omelet cup"
+    },
+    {
+      "name": "Smoked chicken breast slices 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 24,
+        "C": 1,
+        "F": 2,
+        "K": 120
+      },
+      "price": 2.4,
+      "aisle": "Deli",
+      "insta_query": "smoked chicken breast slices"
+    },
+    {
+      "name": "Pulled pork (lean) 3 oz",
+      "package": "3 oz",
+      "portion": "3 oz",
+      "macros": {
+        "P": 21,
+        "C": 3,
+        "F": 7,
+        "K": 170
+      },
+      "price": 2.3,
+      "aisle": "Deli",
+      "insta_query": "pulled pork lean"
+    },
+    {
+      "name": "Canned salmon 5 oz",
+      "package": "5 oz",
+      "portion": "1 can",
+      "macros": {
+        "P": 29,
+        "C": 0,
+        "F": 5,
+        "K": 190
+      },
+      "price": 2.49,
+      "aisle": "Center Aisle",
+      "insta_query": "canned salmon"
+    },
+    {
+      "name": "Kirkland canned chicken 6 oz",
+      "package": "6 oz",
+      "portion": "6 oz",
+      "macros": {
+        "P": 32,
+        "C": 0,
+        "F": 3,
+        "K": 170
+      },
+      "price": 2.1,
+      "aisle": "Center Aisle",
+      "insta_query": "Kirkland canned chicken"
+    },
+    {
+      "name": "Turkey breast deli shaved 4 oz",
+      "package": "4 oz",
+      "portion": "4 oz",
+      "macros": {
+        "P": 22,
+        "C": 2,
+        "F": 1,
+        "K": 110
+      },
+      "price": 2.29,
+      "aisle": "Deli",
+      "insta_query": "turkey breast deli shaved"
+    },
+    {
+      "name": "Low fat Greek yogurt drink 10 oz",
+      "package": "10 oz",
+      "portion": "1 bottle",
+      "macros": {
+        "P": 20,
+        "C": 20,
+        "F": 2,
+        "K": 180
+      },
+      "price": 1.99,
+      "aisle": "Dairy",
+      "insta_query": "Greek yogurt drink low fat"
+    },
+    {
+      "name": "High-protein bagel",
+      "package": "1 bagel",
+      "portion": "1 bagel",
+      "macros": {
+        "P": 25,
+        "C": 55,
+        "F": 3,
+        "K": 330
+      },
+      "price": 1.5,
+      "aisle": "Bakery",
+      "insta_query": "high protein bagel"
+    },
+    {
+      "name": "Protein tortilla chips (Hilo)",
+      "package": "1 bag",
+      "portion": "1 bag",
+      "macros": {
+        "P": 9,
+        "C": 5,
+        "F": 10,
+        "K": 150
+      },
+      "price": 2.29,
+      "aisle": "Center Aisle",
+      "insta_query": "Hilo protein chips"
+    },
+    {
+      "name": "Low-fat ricotta 1/2 cup",
+      "package": "1/2 cup",
+      "portion": "1/2 cup",
+      "macros": {
+        "P": 14,
+        "C": 6,
+        "F": 5,
+        "K": 150
+      },
+      "price": 1.1,
+      "aisle": "Dairy",
+      "insta_query": "low fat ricotta"
+    },
+    {
+      "name": "Egg protein wrap (viral)",
+      "package": "1 wrap",
+      "portion": "1 wrap",
+      "macros": {
+        "P": 10,
+        "C": 1,
+        "F": 2,
+        "K": 70
+      },
+      "price": 1.1,
+      "aisle": "Deli",
+      "insta_query": "egg protein wrap"
+    },
+    {
+      "name": "Seared ahi tuna slices 4 oz",
+      "package": "4 oz",
+      "portion": "4 oz",
+      "macros": {
+        "P": 26,
+        "C": 0,
+        "F": 2,
+        "K": 140
+      },
+      "price": 4.99,
+      "aisle": "Deli",
+      "insta_query": "seared ahi tuna slices"
+    },
+    {
+      "name": "Grilled tofu strips 4 oz",
+      "package": "4 oz",
+      "portion": "4 oz",
+      "macros": {
+        "P": 16,
+        "C": 4,
+        "F": 8,
+        "K": 180
+      },
+      "price": 1.6,
+      "aisle": "Deli",
+      "insta_query": "grilled tofu strips"
+    },
+    {
+      "name": "Protein ice cream sandwich",
+      "package": "1 sandwich",
+      "portion": "1 sandwich",
+      "macros": {
+        "P": 8,
+        "C": 22,
+        "F": 4,
+        "K": 180
+      },
+      "price": 1.6,
+      "aisle": "Frozen",
+      "insta_query": "protein ice cream sandwich"
+    },
+    {
+      "name": "High-protein cottage cheese bowl (plain)",
+      "package": "1 bowl",
+      "portion": "1 bowl",
+      "macros": {
+        "P": 24,
+        "C": 8,
+        "F": 4,
+        "K": 200
+      },
+      "price": 2.0,
+      "aisle": "Dairy",
+      "insta_query": "high protein cottage cheese"
+    },
+    {
+      "name": "Protein cereal milk cup",
+      "package": "1 cup",
+      "portion": "1 cup",
+      "macros": {
+        "P": 20,
+        "C": 16,
+        "F": 2,
+        "K": 170
+      },
+      "price": 1.2,
+      "aisle": "Dairy",
+      "insta_query": "protein cereal milk"
+    }
+  ],
+  "recipes": [
+    {
+      "title": "Big Mac Bowl (low\u2011carb)",
+      "ingredients": [
+        "lean ground beef",
+        "shredded lettuce",
+        "pickles",
+        "light cheese"
+      ],
+      "steps": [
+        "Brown beef",
+        "Season",
+        "Assemble bowl",
+        "Drizzle light sauce"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 42,
+        "C": 12,
+        "F": 30
+      },
+      "price_per_serv": 4.2,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "Chicken Caesar Wrap (HP)",
+      "ingredients": [
+        "chicken breast",
+        "high-protein wrap",
+        "romaine",
+        "light caesar"
+      ],
+      "steps": [
+        "Cook/tear chicken",
+        "Assemble in wrap",
+        "Roll & crisp"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 510,
+        "P": 45,
+        "C": 35,
+        "F": 16
+      },
+      "price_per_serv": 3.8,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Egg White Tortilla Pizza",
+      "ingredients": [
+        "egglife wrap",
+        "egg whites",
+        "light mozzarella",
+        "tomato sauce"
+      ],
+      "steps": [
+        "Whisk & set egg whites",
+        "Top wrap",
+        "Broil"
+      ],
+      "gear": [
+        "stovetop",
+        "oven"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 420,
+        "P": 42,
+        "C": 16,
+        "F": 16
+      },
+      "price_per_serv": 3.1,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Hot Honey Chicken Wrap",
+      "ingredients": [
+        "grilled chicken",
+        "carb balance tortilla",
+        "hot honey"
+      ],
+      "steps": [
+        "Warm chicken",
+        "Assemble wrap",
+        "Sear"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 560,
+        "P": 40,
+        "C": 45,
+        "F": 18
+      },
+      "price_per_serv": 4.0,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Cottage Cheese Flatbread (viral)",
+      "ingredients": [
+        "cottage cheese",
+        "egg",
+        "seasoning"
+      ],
+      "steps": [
+        "Blend",
+        "Pan-bake",
+        "Top with protein"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 36,
+        "C": 18,
+        "F": 22
+      },
+      "price_per_serv": 2.4,
+      "aisles": [
+        "Dairy"
+      ]
+    },
+    {
+      "title": "Sushi Salmon Bowl",
+      "ingredients": [
+        "salmon",
+        "rice",
+        "seaweed",
+        "cucumber"
+      ],
+      "steps": [
+        "Bake salmon",
+        "Steam rice",
+        "Assemble"
+      ],
+      "gear": [
+        "oven",
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 680,
+        "P": 44,
+        "C": 72,
+        "F": 18
+      },
+      "price_per_serv": 5.6,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "Chicken Quesadilla (HP)",
+      "ingredients": [
+        "carb balance tortilla",
+        "chicken",
+        "light cheese"
+      ],
+      "steps": [
+        "Fill",
+        "Crisp both sides",
+        "Slice"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 540,
+        "P": 45,
+        "C": 36,
+        "F": 20
+      },
+      "price_per_serv": 3.8,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Greek Yogurt Parfait (HP)",
+      "ingredients": [
+        "0% greek yogurt",
+        "berries",
+        "protein granola"
+      ],
+      "steps": [
+        "Layer all",
+        "Serve"
+      ],
+      "gear": [
+        "none"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 420,
+        "P": 30,
+        "C": 48,
+        "F": 9
+      },
+      "price_per_serv": 2.6,
+      "aisles": [
+        "Dairy"
+      ]
+    },
+    {
+      "title": "Protein Oats + Skyr Swirl",
+      "ingredients": [
+        "oats",
+        "skyr",
+        "cinnamon"
+      ],
+      "steps": [
+        "Microwave oats",
+        "Fold in skyr",
+        "Serve"
+      ],
+      "gear": [
+        "microwave"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 28,
+        "C": 62,
+        "F": 6
+      },
+      "price_per_serv": 1.4,
+      "aisles": [
+        "Center Aisle"
+      ]
+    },
+    {
+      "title": "Turkey Egg Roll in a Bowl",
+      "ingredients": [
+        "lean turkey",
+        "coleslaw mix",
+        "soy/aminos"
+      ],
+      "steps": [
+        "Brown turkey",
+        "Add slaw",
+        "Season"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 510,
+        "P": 45,
+        "C": 18,
+        "F": 22
+      },
+      "price_per_serv": 3.9,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "Shrimp Stir Fry (10\u2011min)",
+      "ingredients": [
+        "shrimp",
+        "frozen veg",
+        "garlic"
+      ],
+      "steps": [
+        "Sear shrimp",
+        "Stir-fry veg",
+        "Sauce"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 450,
+        "P": 40,
+        "C": 35,
+        "F": 12
+      },
+      "price_per_serv": 4.2,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "Seared Ahi + Cauli Rice",
+      "ingredients": [
+        "ahi tuna",
+        "cauliflower rice",
+        "soy/aminos"
+      ],
+      "steps": [
+        "Sear tuna",
+        "Steam cauli rice",
+        "Serve"
+      ],
+      "gear": [
+        "stovetop",
+        "microwave"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 390,
+        "P": 36,
+        "C": 10,
+        "F": 18
+      },
+      "price_per_serv": 4.9,
+      "aisles": [
+        "Frozen"
+      ]
+    },
+    {
+      "title": "Tuna Poke-ish Bowl",
+      "ingredients": [
+        "canned tuna",
+        "rice",
+        "edamame"
+      ],
+      "steps": [
+        "Make rice",
+        "Mix tuna",
+        "Assemble"
+      ],
+      "gear": [
+        "microwave"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 37,
+        "C": 67,
+        "F": 8
+      },
+      "price_per_serv": 2.1,
+      "aisles": [
+        "Center Aisle"
+      ]
+    },
+    {
+      "title": "Protein Pasta Marinara",
+      "ingredients": [
+        "chickpea pasta",
+        "tomato sauce",
+        "light cheese"
+      ],
+      "steps": [
+        "Boil pasta",
+        "Heat sauce",
+        "Combine"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 620,
+        "P": 42,
+        "C": 74,
+        "F": 10
+      },
+      "price_per_serv": 2.6,
+      "aisles": [
+        "Center Aisle"
+      ]
+    },
+    {
+      "title": "Cottage Cheese Alfredo Pasta",
+      "ingredients": [
+        "cottage cheese",
+        "pasta",
+        "garlic"
+      ],
+      "steps": [
+        "Blend sauce",
+        "Boil pasta",
+        "Toss"
+      ],
+      "gear": [
+        "stovetop",
+        "blender"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 600,
+        "P": 38,
+        "C": 70,
+        "F": 12
+      },
+      "price_per_serv": 2.4,
+      "aisles": [
+        "Dairy"
+      ]
+    },
+    {
+      "title": "Chicken Fried Rice (HP)",
+      "ingredients": [
+        "microwave rice",
+        "chicken",
+        "egg whites"
+      ],
+      "steps": [
+        "Scramble whites",
+        "Add rice",
+        "Stir in chicken"
+      ],
+      "gear": [
+        "stovetop",
+        "microwave"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 640,
+        "P": 46,
+        "C": 78,
+        "F": 10
+      },
+      "price_per_serv": 3.2,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Tortilla Pizza (HP)",
+      "ingredients": [
+        "carb balance tortilla",
+        "turkey pepperoni",
+        "light mozzarella",
+        "sauce"
+      ],
+      "steps": [
+        "Assemble",
+        "Pan crisp",
+        "Serve"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 40,
+        "C": 40,
+        "F": 16
+      },
+      "price_per_serv": 2.8,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Turkey Chili (15\u2011min)",
+      "ingredients": [
+        "lean turkey",
+        "beans",
+        "tomato"
+      ],
+      "steps": [
+        "Brown turkey",
+        "Add beans+toms",
+        "Simmer"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 590,
+        "P": 45,
+        "C": 58,
+        "F": 16
+      },
+      "price_per_serv": 3.6,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "Salmon Caesar Bowl",
+      "ingredients": [
+        "salmon",
+        "greens",
+        "light caesar",
+        "parmesan"
+      ],
+      "steps": [
+        "Cook salmon",
+        "Assemble greens",
+        "Dress"
+      ],
+      "gear": [
+        "oven"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 38,
+        "C": 18,
+        "F": 28
+      },
+      "price_per_serv": 5.3,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    },
+    {
+      "title": "BBQ Chicken Bowl",
+      "ingredients": [
+        "pulled chicken",
+        "cauli rice",
+        "bbq sauce (light)"
+      ],
+      "steps": [
+        "Warm chicken",
+        "Steam cauli rice",
+        "Assemble"
+      ],
+      "gear": [
+        "microwave"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 480,
+        "P": 42,
+        "C": 28,
+        "F": 16
+      },
+      "price_per_serv": 3.7,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Protein French Toast (10\u2011min)",
+      "ingredients": [
+        "egg whites",
+        "light bread",
+        "cinnamon"
+      ],
+      "steps": [
+        "Whisk whites",
+        "Soak + griddle",
+        "Serve"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 28,
+        "C": 54,
+        "F": 6
+      },
+      "price_per_serv": 1.6,
+      "aisles": [
+        "Bakery"
+      ]
+    },
+    {
+      "title": "Chicken Tinga Skillet",
+      "ingredients": [
+        "chicken breast",
+        "tomato",
+        "onion"
+      ],
+      "steps": [
+        "Saut\u00e9 onion",
+        "Add chicken + sauce",
+        "Simmer"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 48,
+        "C": 30,
+        "F": 18
+      },
+      "price_per_serv": 3.8,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Turkey Pesto Zoodles",
+      "ingredients": [
+        "ground turkey",
+        "zucchini noodles",
+        "pesto (light)"
+      ],
+      "steps": [
+        "Brown turkey",
+        "Add zoodles",
+        "Toss pesto"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 480,
+        "P": 44,
+        "C": 16,
+        "F": 26
+      },
+      "price_per_serv": 3.9,
+      "aisles": [
+        "Produce"
+      ]
+    },
+    {
+      "title": "Spicy Tuna Wrap (HP)",
+      "ingredients": [
+        "canned tuna",
+        "high-protein wrap",
+        "light mayo/sriracha"
+      ],
+      "steps": [
+        "Mix tuna",
+        "Fill wrap",
+        "Roll"
+      ],
+      "gear": [
+        "none"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 38,
+        "C": 32,
+        "F": 14
+      },
+      "price_per_serv": 2.2,
+      "aisles": [
+        "Center Aisle"
+      ]
+    },
+    {
+      "title": "Teriyaki Chicken Veggie Bowl",
+      "ingredients": [
+        "chicken",
+        "frozen veg",
+        "teriyaki (light)"
+      ],
+      "steps": [
+        "Sear chicken",
+        "Stir veg",
+        "Sauce"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 520,
+        "P": 42,
+        "C": 44,
+        "F": 12
+      },
+      "price_per_serv": 3.8,
+      "aisles": [
+        "Frozen"
+      ]
+    },
+    {
+      "title": "Chickpea Tuna-less Salad",
+      "ingredients": [
+        "chickpeas",
+        "greek yogurt",
+        "mustard"
+      ],
+      "steps": [
+        "Mash chickpeas",
+        "Fold yogurt",
+        "Season"
+      ],
+      "gear": [
+        "none"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 22,
+        "C": 52,
+        "F": 10
+      },
+      "price_per_serv": 1.6,
+      "aisles": [
+        "Center Aisle"
+      ]
+    },
+    {
+      "title": "Seitan Fajita Skillet",
+      "ingredients": [
+        "seitan",
+        "peppers",
+        "onions"
+      ],
+      "steps": [
+        "Sear seitan",
+        "Add veg",
+        "Season"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 430,
+        "P": 34,
+        "C": 36,
+        "F": 10
+      },
+      "price_per_serv": 2.3,
+      "aisles": [
+        "Deli"
+      ]
+    },
+    {
+      "title": "Egg White Scramble Bowl",
+      "ingredients": [
+        "egg whites",
+        "light cheese",
+        "salsa"
+      ],
+      "steps": [
+        "Scramble",
+        "Top cheese",
+        "Salsa"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 320,
+        "P": 28,
+        "C": 6,
+        "F": 8
+      },
+      "price_per_serv": 1.4,
+      "aisles": [
+        "Dairy"
+      ]
+    },
+    {
+      "title": "Cottage Cheese Protein Bowl",
+      "ingredients": [
+        "cottage cheese",
+        "berries",
+        "honey (light)"
+      ],
+      "steps": [
+        "Assemble bowl",
+        "Serve"
+      ],
+      "gear": [
+        "none"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 360,
+        "P": 28,
+        "C": 34,
+        "F": 6
+      },
+      "price_per_serv": 2.1,
+      "aisles": [
+        "Dairy"
+      ]
+    },
+    {
+      "title": "Chicken Shawarma Skillet",
+      "ingredients": [
+        "chicken thigh (lean)",
+        "spices",
+        "onion"
+      ],
+      "steps": [
+        "Sear",
+        "Spice",
+        "Finish"
+      ],
+      "gear": [
+        "stovetop"
+      ],
+      "servings": 1,
+      "macros": {
+        "K": 560,
+        "P": 44,
+        "C": 18,
+        "F": 28
+      },
+      "price_per_serv": 3.6,
+      "aisles": [
+        "Meat/Seafood"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+
+{% extends "base.html" %}
+{% block content %}
+<section class="mb-6">
+  <div class="glass p-6">
+    <h1 class="text-3xl font-extrabold mb-2">Grocery‑in‑a‑Click + Instacart Linker</h1>
+    <p class="opacity-80 max-w-2xl">Fast, high‑protein, low‑effort meals for busy pros. Auto‑build your 7‑day plan, smart grocery list, and Instacart deep links—optimized for budget and macros.</p>
+  </div>
+</section>
+
+<form method="post" action="/plan" class="grid md:grid-cols-3 gap-4">
+  <div class="card">
+    <div class="text-sm uppercase tracking-wide opacity-70 mb-2">Goal & Calories</div>
+    <label class="block text-sm mb-1">Primary Goal</label>
+    <select name="goal" class="w-full bg-slate-800 rounded p-2 mb-3">
+      <option>Fat loss</option><option>Recomp</option><option>Maintenance</option>
+    </select>
+    <label class="block text-sm mb-1">Bodyweight (lb)</label>
+    <input name="bodyweight" type="number" value="185" class="w-full bg-slate-800 rounded p-2 mb-3" required>
+    <label class="block text-sm mb-1">Calories/day (optional)</label>
+    <input name="calories" type="number" placeholder="auto" class="w-full bg-slate-800 rounded p-2">
+  </div>
+
+  <div class="card">
+    <div class="text-sm uppercase tracking-wide opacity-70 mb-2">Meals & Time</div>
+    <label class="block text-sm mb-1">Meals/day</label>
+    <select name="meals_per_day" class="w-full bg-slate-800 rounded p-2 mb-3">
+      <option>3</option><option selected>4</option><option>5</option>
+    </select>
+    <label class="block text-sm mb-1">Time per cook session</label>
+    <select name="time_per_cook" class="w-full bg-slate-800 rounded p-2">
+      <option>5</option><option selected>10</option><option>15</option>
+    </select>
+    <label class="flex items-center gap-2 mt-3 text-sm">
+      <input type="checkbox" name="low_carb" class="checkbox"> Low‑carb (45/20/35)
+    </label>
+  </div>
+
+  <div class="card">
+    <div class="text-sm uppercase tracking-wide opacity-70 mb-2">Budget</div>
+    <label class="block text-sm mb-1">Weekly Budget ($50–$300)</label>
+    <input name="budget" type="range" min="50" max="300" value="180" oninput="document.getElementById('bdg').textContent='$'+this.value" class="w-full">
+    <div class="text-sm mt-1">Budget: <span id="bdg">$180</span></div>
+    <button class="btn-primary text-lg py-3 w-full mt-4">Generate My Week</button>
+  </div>
+</form>
+{% endblock %}
