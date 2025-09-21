@@ -10,44 +10,34 @@ import config
 
 app = Flask(__name__)
 
-# Allow embedding inside GoHighLevel (GHL) and your own domains
+# --- Allow GHL iframe embedding (kept as-is if you already added it) ---
 @app.after_request
 def allow_ghl_embed(resp):
-    # Remove legacy frame-blocking header if present
     try:
         resp.headers.pop('X-Frame-Options', None)
     except Exception:
         pass
-
-    # Permit framing from GHL + HighLevel hosts and (optionally) your custom course domain
-    # Replace courses.yourbrand.com with your actual host if you have one, or remove it.
     allowed_ancestors = (
         "frame-ancestors 'self' "
         "https://*.gohighlevel.com https://*.myhighlevel.com "
-        "https://*.hlpages.com https://*.highlevel.com https://courses.yourbrand.com"
+        "https://*.hlpages.com https://*.highlevel.com"
     )
-
     existing = resp.headers.get('Content-Security-Policy', '')
     if 'frame-ancestors' in existing:
-        # If you already set CSP elsewhere, strip the old frame-ancestors and append ours
-        import re
-        csp = re.sub(r"frame-ancestors [^;]*;?\s*", "", existing).strip()
+        import re as _re
+        csp = _re.sub(r"frame-ancestors [^;]*;?\\s*", "", existing).strip()
         if csp and not csp.endswith(";"):
             csp += "; "
         resp.headers['Content-Security-Policy'] = csp + allowed_ancestors
     else:
-        # Simple case: set it fresh
         resp.headers['Content-Security-Policy'] = allowed_ancestors
-
-    # Helps some older setups (non-standard but harmless alongside CSP)
     resp.headers['X-Frame-Options'] = 'ALLOWALL'
     return resp
-
 
 # ---------------- helpers ----------------
 def clean_query(name: str):
     name = re.sub(r"[^A-Za-z0-9 ]+", " ", name).strip().lower()
-    name = re.sub(r"\s+", " ", name)
+    name = re.sub(r"\\s+", " ", name)
     return urllib.parse.quote_plus(name)
 
 def instacart_search_url(query: str):
@@ -148,18 +138,25 @@ def add_item_to_lightest(day, item, extra_items, day_index):
     for k in ("P","C","F","K"): meal["macros"][k]+=item["macros"][k]
     extra_items.append({"type":"rte","ref":item,"day":day_index,"meal":m_idx})
 
-def day_penalty(P,C,F,K, target_K, target_P, shares):
+def day_penalty(P,C,F,K, target_K, target_P, shares, protein_cap=None):
     if K==0: return 1e9
     p_pct=(P*4)/K; c_pct=(C*4)/K; f_pct=(F*9)/K
     kcal_band = abs(K - target_K) / target_K
-    prot_floor = max(0, (target_P - P)/target_P)
+    prot_floor = max(0, (target_P - P)/max(1,target_P))
     shares_pen = (abs(p_pct-shares["P"]), abs(c_pct-shares["C"]), abs(f_pct-shares["F"]))
-    return kcal_band*3 + prot_floor*4 + sum(shares_pen)
+    over_cap_pen = 0.0
+    if protein_cap is not None and P > protein_cap:
+        over_cap_pen = (P - protein_cap) / max(1, protein_cap) * 8.0  # strong penalty
+    return kcal_band*3 + prot_floor*4 + sum(shares_pen) + over_cap_pen
 
-def macro_gap(P,C,F,K, shares):
+def macro_gap(P,C,F,K, shares, protein_target, protein_cap):
     if K==0: return "P"
-    shares_now = {"P": (P*4)/K, "C": (C*4)/K, "F": (F*9)/K}
-    diffs = {"P":shares["P"] - shares_now["P"], "C":shares["C"] - shares_now["C"], "F":shares["F"] - shares_now["F"]}
+    p_now = (P*4)/K; c_now = (C*4)/K; f_now = (F*9)/K
+    diffs = {"P":shares["P"] - p_now, "C":shares["C"] - c_now, "F":shares["F"] - f_now}
+    if P >= protein_target:
+        diffs["P"] = -1e9
+    if P > protein_cap:
+        diffs["P"] = -1e12
     return max(diffs, key=lambda k: diffs[k])
 
 def balance_macros_for_week(plan_days, target, catalog, extra_items, low_carb=False):
@@ -173,7 +170,8 @@ def balance_macros_for_week(plan_days, target, catalog, extra_items, low_carb=Fa
         candidates = [c for c in candidates if low_carb_ok(c, 20)]
 
     target_K = int(target["calories"])
-    target_P = int(target["protein_g"])
+    protein_target = int(target["protein_g"])
+    protein_cap    = int(target.get("protein_cap", protein_target))
     shares = target["shares"]
 
     def totals(day):
@@ -184,12 +182,24 @@ def balance_macros_for_week(plan_days, target, catalog, extra_items, low_carb=Fa
         return P,C,F,K
 
     for d_i, day in enumerate(plan_days):
-        for _ in range(140):
+        for _ in range(160):
             P,C,F,K = totals(day)
             lower, upper = target_K*0.95, target_K*1.05
-            if lower <= K <= upper and P>=target_P:
+
+            if P > protein_cap and extra_items:
+                cands=[ex for ex in extra_items if ex.get("day")==d_i]
+                if cands:
+                    ex=max(cands, key=lambda e:e["ref"]["macros"]["P"])
+                    m_idx=ex.get("meal",0)
+                    meal=day["meals"][m_idx]
+                    for k2 in ("P","C","F","K"):
+                        meal["macros"][k2]=max(0, meal["macros"][k2]-ex["ref"]["macros"][k2])
+                    extra_items.remove(ex)
+                    continue
+
+            if lower <= K <= upper and P>=protein_target:
                 p_pct=(P*4)/K; c_pct=(C*4)/K; f_pct=(F*9)/K
-                if (abs(p_pct-shares["P"])<=0.04 and abs(c_pct-shares["C"])<=0.04 and abs(f_pct-shares["F"])<=0.04):
+                if (abs(p_pct-shares["P"])<=0.04 and abs(c_pct-shares["C"])<=0.04 and abs(f_pct-shares["F"])<=0.04 and P <= protein_cap):
                     break
 
             if K>upper and extra_items:
@@ -198,25 +208,31 @@ def balance_macros_for_week(plan_days, target, catalog, extra_items, low_carb=Fa
                     ex=max(cands, key=lambda e:e["ref"]["macros"]["K"])
                     m_idx=ex.get("meal",0)
                     meal=day["meals"][m_idx]
-                    for k2 in ("P","C","F","K"): meal["macros"][k2]=max(0, meal["macros"][k2]-ex["ref"]["macros"][k2])
+                    for k2 in ("P","C","F","K"):
+                        meal["macros"][k2]=max(0, meal["macros"][k2]-ex["ref"]["macros"][k2])
                     extra_items.remove(ex)
                     continue
                 else:
                     break
 
-            gap = macro_gap(P,C,F,K, shares)
+            gap = macro_gap(P,C,F,K, shares, protein_target, protein_cap)
+            if gap=="P" and P >= protein_target:
+                gap = "C" if (shares["C"] - (C*4)/K) > (shares["F"] - (F*9)/K) else "F"
+
             pool = boosters if gap=="P" else (carb_fillers if gap=="C" else fat_fillers)
             if low_carb and gap=="C":
                 pool = [i for i in balanced_fillers if i["macros"]["C"]<=18] + [i for i in micro if i["macros"]["C"]<=10]
             margin = target_K - K
             best=None; best_pen=1e18
             for cand in pool + candidates:
-                if low_carb and not low_carb_ok(cand, 20): 
+                if gap!="P" and cand in boosters and P >= protein_target:
+                    continue
+                if low_carb and not low_carb_ok(cand, 20):
                     continue
                 if cand["macros"]["K"] > min(350, margin+200):
                     continue
                 P2, C2, F2, K2 = P+cand["macros"]["P"], C+cand["macros"]["C"], F+cand["macros"]["F"], K+cand["macros"]["K"]
-                pen = day_penalty(P2,C2,F2,K2, target_K, target_P, shares)
+                pen = day_penalty(P2,C2,F2,K2, target_K, protein_target, shares, protein_cap=protein_cap)
                 if pen < best_pen:
                     best_pen = pen; best = cand
             if best:
@@ -262,7 +278,6 @@ def top_up_days_with_budget(days_plan, extras, catalog, target, current_cost, bu
             price=cand["price"]
             if price>headroom: continue
             P2,C2,F2,K2 = P+cand["macros"]["P"], C+cand["macros"]["C"], F+cand["macros"]["F"], K+cand["macros"]["K"]
-            # simple improvement heuristic
             gain = min(target_K, K2) - K
             score = gain / max(0.01, price)
             if score>best_score:
@@ -302,7 +317,7 @@ def groceries_from_plan(base_items, extras, household=1):
     for (name,aisle,package),qty in counter.items():
         by_aisle[aisle].append({"name":name,"package":package,"instacart_url":instacart_search_url(name)})
         csv_rows.append({"name":name,"aisle":aisle,"qty":qty,"unit":package})
-    return by_aisle, csv_rows, "\n".join(queries)
+    return by_aisle, csv_rows, "\\n".join(queries)
 
 # ---------------- globals ----------------
 LAST_META={}
@@ -332,10 +347,13 @@ def plan():
 
     shares = {"P":0.45,"C":0.20,"F":0.35} if low_carb else {"P":0.40,"C":0.30,"F":0.30}
     calories=int(calories_str) if calories_str else tdee_from_goal(goal, bodyweight)
-    protein_g=max(bodyweight, int(shares["P"]*calories/4))
+
+    # --- STRICT PROTEIN RULES ---
+    protein_target = int(bodyweight)                 # 1.0 g/lb
+    protein_cap    = int(math.ceil(bodyweight * 1.1))  # hard cap 1.1 g/lb (never exceed)
     fat_g=int(shares["F"]*calories/9)
     carb_g=int(shares["C"]*calories/4)
-    target={"calories":calories,"protein_g":protein_g,"fat_g":fat_g,"carb_g":carb_g,"shares":shares}
+    target={"calories":calories,"protein_g":protein_target,"protein_cap":protein_cap,"fat_g":fat_g,"carb_g":carb_g,"shares":shares}
 
     per_meal_k=int(calories/meals_per_day)
     catalog=load_catalog()
@@ -367,7 +385,7 @@ def plan():
     total_cost = sum((item_price(it) for it in chosen)) + sum((e["ref"]["price"] for e in extras))
 
     global LAST_META, LAST_DAYS, LAST_CSV, LAST_GROCERY, LAST_BASE, LAST_EXTRAS, LAST_COST, LAST_PREFS
-    LAST_META={"calories":calories,"protein_g":protein_g,"budget":budget}
+    LAST_META={"calories":calories,"protein_g":protein_target,"budget":budget}
     LAST_DAYS=days_plan
     LAST_CSV=csv_rows
     LAST_GROCERY=grocery
@@ -378,7 +396,7 @@ def plan():
 
     plan={
         "days":days_plan,"grocery":grocery,"csv_rows":csv_rows,"queries":queries,
-        "total_cost":total_cost,"calories":calories,"protein_target":protein_g,"budget":budget,
+        "total_cost":total_cost,"calories":calories,"protein_target":protein_target,"budget":budget,
         "low_carb":low_carb
     }
     return render_template("plan.html", plan=plan, APP_NAME=config.APP_NAME, BRAND_NAME=config.BRAND_NAME, FAVICON=config.FAVICON, ACCENT=getattr(config,"ACCENT","#f97316"), now=datetime.datetime.utcnow())
@@ -397,12 +415,10 @@ def export_csv():
     return app.response_class(buf.getvalue(), mimetype="text/csv", headers={"Content-Disposition":"attachment; filename=grocery.csv"})
 
 def wrapped_paragraph(text, style):
-    # escape for regular text cells
     text = text.replace("&", "&amp;").replace("<","&lt;").replace(">","&gt;")
     return Paragraph(text, style)
 
 def link_paragraph(url, text, style):
-    # do not escape; use ReportLab link tag
     return Paragraph(f'<link href="{url}">{text}</link>', style)
 
 @app.route("/export/plan.pdf")
@@ -478,3 +494,4 @@ def healthz():
 
 if __name__=="__main__":
     app.run(debug=True, port=5001)
+rt=5001)
