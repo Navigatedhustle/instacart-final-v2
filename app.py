@@ -54,6 +54,32 @@ def tdee_from_goal(goal, bodyweight):
     mult = {"Fat loss": 11, "Recomp": 12, "Maintenance": 14}.get(goal, 12)
     return int(bodyweight * mult)
 
+def mifflin_bmr(weight_lb: float, height_cm: float, age: int, sex: str = "neutral"):
+    # Mifflin-St Jeor: BMR = 10*kg + 6.25*cm - 5*age + s
+    # s: male +5, female -161, neutral average -78 (approx) when sex not provided
+    kg = weight_lb * 0.45359237
+    if sex == "male":
+        s = 5
+    elif sex == "female":
+        s = -161
+    else:
+        s = -78  # neutral average; tends to under male a bit, over female a bit
+    return 10*kg + 6.25*height_cm - 5*age + s
+
+ACTIVITY_MAP = {
+    "sedentary": 1.2,
+    "light": 1.375,
+    "moderate": 1.55,
+    "very": 1.725,
+    "athlete": 1.9
+}
+
+def tdee_from_bmr_goal(bmr: float, goal: str, activity_level: str):
+    af = ACTIVITY_MAP.get(activity_level, 1.55)
+    tdee = bmr * af
+    adj = {"Fat loss": 0.85, "Recomp": 0.95, "Maintenance": 1.00}.get(goal, 0.95)
+    return int(round(tdee * adj)), int(round(tdee))
+
 def low_carb_ok(obj, max_c=20, is_recipe=False):
     C = obj["macros"]["C"]
     if is_recipe:
@@ -337,20 +363,47 @@ def index():
 @app.route("/plan", methods=["POST"])
 def plan():
     goal=request.form.get("goal","Fat loss")
-    bodyweight=int(request.form.get("bodyweight","185"))
+    bodyweight=float(request.form.get("bodyweight","185") or 185)
     calories_str=request.form.get("calories","").strip()
     meals_per_day=int(request.form.get("meals_per_day","4"))
     budget=float(request.form.get("budget","180"))
     time_per_cook=int(request.form.get("time_per_cook","10"))
     low_carb = request.form.get("low_carb") == "on"
-    days=7
+    # New inputs
+    age=int(request.form.get("age","35") or 35)
+    activity=request.form.get("activity_level","moderate")
+    height_ft=request.form.get("height_ft","5")
+    height_in=request.form.get("height_in","10")
+    height_cm=request.form.get("height_cm","")
+    sex = request.form.get("sex","neutral")  # optional
 
+    # Compute height in cm (support US or direct cm)
+    if height_cm:
+        try:
+            H_cm=float(height_cm)
+        except:
+            H_cm=178.0
+    else:
+        try:
+            ft=float(height_ft); inch=float(height_in)
+        except:
+            ft, inch = 5.0, 10.0
+        H_cm = (ft*12.0 + inch) * 2.54
+
+    # Shares
     shares = {"P":0.45,"C":0.20,"F":0.35} if low_carb else {"P":0.40,"C":0.30,"F":0.30}
-    calories=int(calories_str) if calories_str else tdee_from_goal(goal, bodyweight)
+
+    # Calories from user or BMR/TDEE if blank
+    if calories_str:
+        calories=int(calories_str)
+        bmr=None; raw_tdee=None
+    else:
+        bmr = int(round(mifflin_bmr(bodyweight, H_cm, age, sex=sex)))
+        calories, raw_tdee = tdee_from_bmr_goal(bmr, goal, activity)
 
     # --- STRICT PROTEIN RULES ---
-    protein_target = int(bodyweight)                 # 1.0 g/lb
-    protein_cap    = int(math.ceil(bodyweight * 1.1))  # hard cap 1.1 g/lb (never exceed)
+    protein_target = int(round(bodyweight))                 # 1.0 g/lb
+    protein_cap    = int(math.ceil(bodyweight * 1.1))      # cap 1.1 g/lb
     fat_g=int(shares["F"]*calories/9)
     carb_g=int(shares["C"]*calories/4)
     target={"calories":calories,"protein_g":protein_target,"protein_cap":protein_cap,"fat_g":fat_g,"carb_g":carb_g,"shares":shares}
@@ -358,6 +411,7 @@ def plan():
     per_meal_k=int(calories/meals_per_day)
     catalog=load_catalog()
 
+    days=7
     total_meals=meals_per_day*days
     chosen=choose_items(catalog, total_meals, time_per_cook, per_meal_k, low_carb)
     days_plan, extras=build_week_plan(chosen, meals_per_day, days, per_meal_k, catalog, low_carb)
@@ -385,7 +439,8 @@ def plan():
     total_cost = sum((item_price(it) for it in chosen)) + sum((e["ref"]["price"] for e in extras))
 
     global LAST_META, LAST_DAYS, LAST_CSV, LAST_GROCERY, LAST_BASE, LAST_EXTRAS, LAST_COST, LAST_PREFS
-    LAST_META={"calories":calories,"protein_g":protein_target,"budget":budget}
+    LAST_META={"calories":calories,"protein_g":protein_target,"budget":budget, "bmr":bmr, "tdee":raw_tdee,
+               "age":age,"height_cm":H_cm,"activity":activity,"sex":sex}
     LAST_DAYS=days_plan
     LAST_CSV=csv_rows
     LAST_GROCERY=grocery
@@ -397,7 +452,7 @@ def plan():
     plan={
         "days":days_plan,"grocery":grocery,"csv_rows":csv_rows,"queries":queries,
         "total_cost":total_cost,"calories":calories,"protein_target":protein_target,"budget":budget,
-        "low_carb":low_carb
+        "low_carb":low_carb, "bmr":bmr, "tdee":raw_tdee, "age":age, "height_cm":H_cm, "activity":activity, "sex":sex
     }
     return render_template("plan.html", plan=plan, APP_NAME=config.APP_NAME, BRAND_NAME=config.BRAND_NAME, FAVICON=config.FAVICON, ACCENT=getattr(config,"ACCENT","#f97316"), now=datetime.datetime.utcnow())
 
@@ -430,9 +485,12 @@ def export_plan_pdf():
     title = styles["Title"]; title.fontName="Helvetica-Bold"; title.fontSize=19
     h3 = styles["Heading3"]; h3.fontName="Helvetica-Bold"; h3.fontSize=12
     body = ParagraphStyle("body", parent=styles["Normal"], fontName="Helvetica", fontSize=10, leading=12, wordWrap='LTR')
-    elems=[wrapped_paragraph("ActivBlaze Corporate Cut — 7-Day Plan", title),
-           wrapped_paragraph(f"Calories/day target: {LAST_META.get('calories')} • Protein target: {LAST_META.get('protein_g')} g • Budget: ${LAST_META.get('budget')} • Diet: {'Low-carb' if LAST_PREFS.get('low_carb') else 'Standard 40/30/30'}", body),
-           Spacer(1,10)]
+    elems=[wrapped_paragraph("ActivBlaze Corporate Cut — 7-Day Plan", title)]
+    meta_line = f"Calories/day target: {LAST_META.get('calories')}"
+    if LAST_META.get("bmr") and LAST_META.get("tdee"):
+        meta_line += f" • BMR: {LAST_META.get('bmr')} • TDEE: {LAST_META.get('tdee')}"
+    meta_line += f" • Protein target: {LAST_META.get('protein_g')} g • Budget: ${LAST_META.get('budget')} • Diet: {'Low-carb' if LAST_PREFS.get('low_carb') else 'Standard 40/30/30'}"
+    elems += [wrapped_paragraph(meta_line, body), Spacer(1,10)]
     zebra=[colors.whitesmoke, colors.HexColor('#eef2ff')]
     for i, day in enumerate(LAST_DAYS, start=1):
         elems.append(wrapped_paragraph(f"Day {i} — {day.get('total_protein',0)} g protein, ~{int(day.get('total_calories',0))} kcal", h3))
@@ -493,6 +551,4 @@ def healthz():
     return "ok", 200
 
 if __name__=="__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5000")), debug=False)
-
-
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT","5000")), debug=False)

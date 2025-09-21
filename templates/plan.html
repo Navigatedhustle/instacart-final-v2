@@ -1,58 +1,59 @@
 
 {% extends "base.html" %}
 {% block content %}
-<div class="glass p-4 flex items-center justify-between">
-  <div>
-    <h1 class="text-2xl font-bold">Your 7‑Day Plan</h1>
-    <p class="opacity-70 text-sm">Calories/day target: {{ plan.calories }}, Protein target: {{ plan.protein_target }}g, Budget: ${{ plan.budget }}{% if plan.low_carb %}, Diet: Low‑carb{% endif %}</p>
+<div class="max-w-6xl mx-auto px-4 py-6">
+  <div class="mb-6">
+    <h1 class="text-xl font-bold">Your 7‑Day Plan</h1>
+    <p class="text-slate-300 mt-1">
+      Target: <b>{{ plan.calories }}</b> kcal/day • Protein target: <b>{{ plan.protein_target }} g</b>
+      {% if plan.bmr %} • BMR: <b>{{ plan.bmr }}</b>{% endif %}
+      {% if plan.tdee %} • TDEE: <b>{{ plan.tdee }}</b>{% endif %}
+      • Diet: {{ 'Low‑carb' if plan.low_carb else '40/30/30' }}
+    </p>
   </div>
-  <div class="text-sm flex items-center gap-2">
-    <a href="/export/plan.pdf" class="btn-secondary">Plan PDF</a>
-    <a href="/export/grocery.pdf" class="btn-secondary">Grocery PDF</a>
-  </div>
-</div>
 
-<h2 class="text-lg font-semibold mt-5">Meals</h2>
-<div class="grid md:grid-cols-2 gap-4">
-  {% for day in plan.days %}
-  <div class="card">
-    <div class="flex items-center justify-between mb-2">
-      <div class="font-semibold">Day {{ loop.index }}</div>
-      <div class="opacity-70 text-sm">{{ day.total_protein }}g protein, ~{{ day.total_calories|int }} kcal</div>
-    </div>
-    <div class="space-y-2">
-      {% for m in day.meals %}
-      <div class="card">
-        <div class="flex items-center justify-between">
-          <div class="font-medium">{{ m.title }}</div>
-          <button class="btn-secondary text-xs">Swap</button>
-        </div>
-        <div class="opacity-70 text-xs mt-1">{{ m.macros.P }}g P • {{ m.macros.C }}g C • {{ m.macros.F }}g F • {{ m.macros.K }} kcal</div>
+  <div class="grid md:grid-cols-2 gap-4">
+    {% for day in plan.days %}
+    <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-4">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="font-semibold">Day {{ loop.index }}</h2>
+        <div class="text-sm text-slate-300">{{ day.total_protein }} g • ~{{ day.total_calories|int }} kcal</div>
       </div>
-      {% endfor %}
+      <div class="space-y-2">
+        {% for m in day.meals %}
+        <div class="rounded-xl bg-slate-800/70 border border-slate-700 p-3">
+          <div class="text-sm font-medium">{{ m.title }}</div>
+          <div class="text-xs text-slate-300 mt-1">P {{ m.macros.P }} • C {{ m.macros.C }} • F {{ m.macros.F }} • K {{ m.macros.K }}</div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
-</div>
 
-<h2 class="text-lg font-semibold mt-8">Smart Grocery List</h2>
-<p class="text-sm opacity-70 mb-2">Grouped by aisle. Check items as you add them to cart.</p>
-<div class="grid md:grid-cols-2 gap-3">
-  {% for aisle, items in plan.grocery.items() %}
-  <div class="card">
-    <div class="font-semibold mb-2">{{ aisle }}</div>
-    <ul class="space-y-1">
-      {% for it in items %}
-      <li class="text-sm flex items-center justify-between gap-2">
-        <label class="flex items-center gap-2">
-          <input type="checkbox" class="checkbox">
-          <span>{{ it.name }} <span class="opacity-50">({{ it.package }})</span></span>
-        </label>
-        <a class="btn-secondary text-xs" href="{{ it.instacart_url }}" target="_blank" rel="noopener">Open in Instacart</a>
-      </li>
+  <div class="mt-8">
+    <h3 class="text-lg font-semibold mb-2">Smart Grocery List</h3>
+    {% if plan.grocery %}
+      {% for aisle, items in plan.grocery.items() %}
+        <div class="mb-4">
+          <div class="text-sm uppercase tracking-wide text-slate-400 mb-2">{{ aisle }}</div>
+          <div class="grid sm:grid-cols-2 gap-2">
+          {% for it in items %}
+            <div class="flex items-center justify-between rounded-xl bg-slate-900/70 border border-slate-800 px-3 py-2">
+              <div class="text-sm">{{ it.name }} <span class="text-slate-400 text-xs">({{ it.package }})</span></div>
+              <a class="text-xs underline text-orange-400 hover:text-orange-300" target="_blank" href="{{ it.instacart_url }}">Open in Instacart</a>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
       {% endfor %}
-    </ul>
+      <div class="mt-4 flex gap-3">
+        <a href="/export/plan.pdf" class="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 text-sm">Download Plan PDF</a>
+        <a href="/export/grocery.pdf" class="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 text-sm">Download Grocery PDF</a>
+      </div>
+    {% else %}
+      <p>No grocery items generated.</p>
+    {% endif %}
   </div>
-  {% endfor %}
 </div>
 {% endblock %}
