@@ -48,7 +48,8 @@
   <footer class="mt-16 border-t border-white/10">
     <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-slate-400">
       <div class="flex items-center gap-2">
-        <span class="opacity-70">©</span> <span>{{ (now or '')|string()[:10] }}</span>
+        <span class="opacity-70">©</span>
+        <span>{{ now.strftime('%Y-%m-%d') if now else '' }}</span>
         <span class="mx-2">·</span>
         <span>ActivBlaze Corporate Cut</span>
       </div>
