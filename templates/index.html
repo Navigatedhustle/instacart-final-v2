@@ -1,83 +1,78 @@
-
 <!doctype html>
-<html lang="en" class="dark">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>{{ APP_NAME or "ActivBlaze" }}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="{{ FAVICON or '/static/favicon.png' }}"/>
-  <style>
-    :root { color-scheme: dark; }
-    .card{ @apply rounded-2xl bg-slate-900/60 shadow-xl ring-1 ring-white/10 p-6; }
-    label{ @apply text-sm text-slate-300; }
-    input, select { @apply w-full mt-1 rounded-xl bg-slate-800/80 border border-slate-700 px-3 py-2 text-slate-100; }
-    .btn-primary{ @apply w-full mt-4 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white font-semibold px-5 py-3 shadow-lg; }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100">
-  <div class="max-w-5xl mx-auto px-4 py-8">
-    <header class="mb-6 flex items-center justify-between">
-      <h1 class="text-2xl font-bold"><span class="text-orange-500">ActivBlaze</span> Corporate Cut</h1>
-    </header>
-
-    <form action="/plan" method="post" class="grid md:grid-cols-3 gap-6">
-      <div class="md:col-span-2 card">
-        <h2 class="text-lg font-semibold mb-4">Planner</h2>
-        <div class="grid sm:grid-cols-2 gap-4">
+{% extends "base.html" %}
+{% block content %}
+<section class="relative">
+  <div class="max-w-6xl mx-auto px-4 py-10">
+    <!-- Hero -->
+    <div class="mb-8 grid lg:grid-cols-[1.2fr,0.8fr] gap-6 items-stretch">
+      <div class="card-xl p-6">
+        <div class="flex items-start justify-between mb-4">
           <div>
-            <label>Primary Goal</label>
-            <select name="goal">
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">
+              Plan your week in minutes
+            </h1>
+            <p class="mt-1 text-slate-300">
+              High‑protein, low‑effort meals with Instacart‑ready shopping.
+            </p>
+          </div>
+          <span class="badge-premium">Premium</span>
+        </div>
+
+        <form action="/plan" method="post" class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="fld">Primary Goal</label>
+            <select name="goal" class="input">
               <option>Fat loss</option>
               <option>Recomp</option>
               <option>Maintenance</option>
             </select>
           </div>
           <div>
-            <label>Meals per day</label>
-            <select name="meals_per_day">
+            <label class="fld">Meals per day</label>
+            <select name="meals_per_day" class="input">
               <option>3</option><option selected>4</option><option>5</option>
             </select>
           </div>
+
           <div>
-            <label>Bodyweight (lb)</label>
-            <input type="number" name="bodyweight" min="90" max="400" value="185"/>
+            <label class="fld">Bodyweight (lb)</label>
+            <input class="input" type="number" name="bodyweight" min="90" max="400" value="185"/>
           </div>
           <div>
-            <label>Calories/day (optional)</label>
-            <input type="number" name="calories" placeholder="Leave blank to auto-calc via BMR/TDEE"/>
+            <label class="fld">Calories/day (optional)</label>
+            <input class="input" type="number" name="calories" placeholder="Auto via BMR/TDEE if blank"/>
           </div>
 
-          <!-- NEW: BMR/TDEE Inputs -->
+          <!-- BMR/TDEE Inputs -->
           <div>
-            <label>Age</label>
-            <input type="number" name="age" min="16" max="85" value="35"/>
+            <label class="fld">Age</label>
+            <input class="input" type="number" name="age" min="16" max="85" value="35"/>
           </div>
           <div>
-            <label>Activity level</label>
-            <select name="activity_level">
-              <option value="sedentary">Sedentary (little/no exercise)</option>
-              <option value="light">Light (1–3x/wk)</option>
-              <option value="moderate" selected>Moderate (3–5x/wk)</option>
-              <option value="very">Very active (6–7x/wk)</option>
-              <option value="athlete">Athlete (2x/day)</option>
+            <label class="fld">Activity level</label>
+            <select class="input" name="activity_level">
+              <option value="sedentary">Sedentary</option>
+              <option value="light">Light</option>
+              <option value="moderate" selected>Moderate</option>
+              <option value="very">Very active</option>
+              <option value="athlete">Athlete</option>
             </select>
           </div>
           <div>
-            <label>Height — feet</label>
-            <input type="number" name="height_ft" min="4" max="7" value="5"/>
+            <label class="fld">Height — feet</label>
+            <input class="input" type="number" name="height_ft" min="4" max="7" value="5"/>
           </div>
           <div>
-            <label>Height — inches</label>
-            <input type="number" name="height_in" min="0" max="11" value="10"/>
+            <label class="fld">Height — inches</label>
+            <input class="input" type="number" name="height_in" min="0" max="11" value="10"/>
           </div>
           <div class="sm:col-span-2">
-            <label>OR Height in centimeters</label>
-            <input type="number" name="height_cm" step="0.1" placeholder="Optional. If filled, overrides feet/inches."/>
+            <label class="fld">OR height (cm)</label>
+            <input class="input" type="number" name="height_cm" step="0.1" placeholder="Optional. Overrides feet/inches."/>
           </div>
           <div class="sm:col-span-2">
-            <label>Sex (optional, improves BMR)</label>
-            <select name="sex">
+            <label class="fld">Sex (optional)</label>
+            <select class="input" name="sex">
               <option value="neutral" selected>Prefer not to say / Neutral</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -85,74 +80,92 @@
           </div>
 
           <div>
-            <label>Time per cook session</label>
-            <select name="time_per_cook">
+            <label class="fld">Time per cook</label>
+            <select class="input" name="time_per_cook">
               <option>5</option><option selected>10</option><option>15</option>
             </select>
           </div>
           <div>
-            <label>Weekly budget ($)</label>
-            <input type="number" name="budget" min="50" max="300" value="180"/>
+            <label class="fld">Weekly budget ($)</label>
+            <input class="input" type="number" name="budget" min="50" max="300" value="180"/>
           </div>
-          <div class="sm:col-span-2">
-            <label class="inline-flex items-center gap-2">
-              <input type="checkbox" name="low_carb"/>
-              <span>Low-Carb mode (higher protein/fat, lower carbs)</span>
+
+          <div class="sm:col-span-2 mt-2">
+            <label class="inline-flex items-center gap-3">
+              <input class="checkbox" type="checkbox" name="low_carb"/>
+              <span class="text-sm text-slate-300">Low‑Carb mode (adjust macro shares)</span>
             </label>
           </div>
-        </div>
 
-        <button class="btn-primary">Generate My Week</button>
+          <div class="sm:col-span-2">
+            <button class="cta-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-90" viewBox="0 0 24 24" fill="currentColor"><path d="m5 12 5 5L20 7"/></svg>
+              Generate My Week
+            </button>
+          </div>
+        </form>
       </div>
 
-      <aside class="card">
-        <h3 class="font-semibold mb-2">Presets</h3>
-        <div class="space-y-2">
-          <button type="button" onclick="presetSolo()" class="w-full rounded-xl bg-slate-800 hover:bg-slate-700 px-3 py-2">Solo, $80, Fat Loss</button>
-          <button type="button" onclick="presetCouple()" class="w-full rounded-xl bg-slate-800 hover:bg-slate-700 px-3 py-2">Couple, $140, Recomp</button>
-          <button type="button" onclick="presetFamily()" class="w-full rounded-xl bg-slate-800 hover:bg-slate-700 px-3 py-2">Family of 3, $180, Maintenance</button>
+      <aside class="card-xl p-6">
+        <h3 class="text-lg font-semibold mb-3">Quick Presets</h3>
+        <div class="grid gap-3">
+          <button type="button" onclick="presetSolo()" class="preset">
+            <span>Solo, $80 budget, Fat Loss</span>
+            <span class="kbd">4 meals • 10 min</span>
+          </button>
+          <button type="button" onclick="presetCouple()" class="preset">
+            <span>Couple, $140 budget, Recomp</span>
+            <span class="kbd">3 meals • 15 min</span>
+          </button>
+          <button type="button" onclick="presetFamily()" class="preset">
+            <span>Family of 3, $180 budget, Maintenance</span>
+            <span class="kbd">4 meals • 10 min</span>
+          </button>
         </div>
+        <p class="text-xs text-slate-400 mt-4">
+          Fine‑tune later with one‑click swaps. Your plan is stored locally until you refresh.
+        </p>
       </aside>
-    </form>
+    </div>
   </div>
+</section>
 
-  <script>
-    function presetSolo(){
-      document.querySelector('[name="goal"]').value='Fat loss';
-      document.querySelector('[name="meals_per_day"]').value='4';
-      document.querySelector('[name="bodyweight"]').value=180;
-      document.querySelector('[name="age"]').value=35;
-      document.querySelector('[name="activity_level"]').value='moderate';
-      document.querySelector('[name="height_ft"]').value=5;
-      document.querySelector('[name="height_in"]').value=11;
-      document.querySelector('[name="budget"]').value=80;
-      document.querySelector('[name="time_per_cook"]').value=10;
-      document.querySelector('[name="low_carb"]').checked=true;
-    }
-    function presetCouple(){
-      document.querySelector('[name="goal"]').value='Recomp';
-      document.querySelector('[name="meals_per_day"]').value='3';
-      document.querySelector('[name="bodyweight"]').value=170;
-      document.querySelector('[name="age"]').value=32;
-      document.querySelector('[name="activity_level"]').value='moderate';
-      document.querySelector('[name="height_ft"]').value=5;
-      document.querySelector('[name="height_in"]').value=8;
-      document.querySelector('[name="budget"]').value=140;
-      document.querySelector('[name="time_per_cook"]').value=15;
-      document.querySelector('[name="low_carb"]').checked=false;
-    }
-    function presetFamily(){
-      document.querySelector('[name="goal"]').value='Maintenance';
-      document.querySelector('[name="meals_per_day"]').value='4';
-      document.querySelector('[name="bodyweight"]').value=190;
-      document.querySelector('[name="age"]').value=38;
-      document.querySelector('[name="activity_level"]').value='light';
-      document.querySelector('[name="height_ft"]').value=6;
-      document.querySelector('[name="height_in"]').value=0;
-      document.querySelector('[name="budget"]').value=180;
-      document.querySelector('[name="time_per_cook"]').value=10;
-      document.querySelector('[name="low_carb"]').checked=false;
-    }
-  </script>
-</body>
-</html>
+<script>
+  function presetSolo(){
+    document.querySelector('[name="goal"]').value='Fat loss';
+    document.querySelector('[name="meals_per_day"]').value='4';
+    document.querySelector('[name="bodyweight"]').value=180;
+    document.querySelector('[name="age"]').value=35;
+    document.querySelector('[name="activity_level"]').value='moderate';
+    document.querySelector('[name="height_ft"]').value=5;
+    document.querySelector('[name="height_in"]').value=11;
+    document.querySelector('[name="budget"]').value=80;
+    document.querySelector('[name="time_per_cook"]').value=10;
+    document.querySelector('[name="low_carb"]').checked=true;
+  }
+  function presetCouple(){
+    document.querySelector('[name="goal"]').value='Recomp';
+    document.querySelector('[name="meals_per_day"]').value='3';
+    document.querySelector('[name="bodyweight"]').value=170;
+    document.querySelector('[name="age"]').value=32;
+    document.querySelector('[name="activity_level"]').value='moderate';
+    document.querySelector('[name="height_ft"]').value=5;
+    document.querySelector('[name="height_in"]').value=8;
+    document.querySelector('[name="budget"]').value=140;
+    document.querySelector('[name="time_per_cook"]').value=15;
+    document.querySelector('[name="low_carb"]').checked=false;
+  }
+  function presetFamily(){
+    document.querySelector('[name="goal"]').value='Maintenance';
+    document.querySelector('[name="meals_per_day"]').value='4';
+    document.querySelector('[name="bodyweight"]').value=190;
+    document.querySelector('[name="age"]').value=38;
+    document.querySelector('[name="activity_level"]').value='light';
+    document.querySelector('[name="height_ft"]').value=6;
+    document.querySelector('[name="height_in"]').value=0;
+    document.querySelector('[name="budget"]').value=180;
+    document.querySelector('[name="time_per_cook"]').value=10;
+    document.querySelector('[name="low_carb"]').checked=false;
+  }
+</script>
+{% endblock %}

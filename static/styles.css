@@ -1,1 +1,117 @@
-/* tailwind via CDN */
+/* Premium visual polish without heavy libs */
+:root { color-scheme: dark; }
+.bg-grid {
+  background-image:
+    radial-gradient(ellipse at top left, rgba(255,255,255,0.04), transparent 35%),
+    radial-gradient(ellipse at bottom right, rgba(255,149,0,0.06), transparent 35%),
+    linear-gradient(to bottom, rgba(255,255,255,0.04), transparent 20%);
+  background-blend-mode: screen, normal, normal;
+}
+.card-xl {
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+}
+.badge-premium {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; padding: 6px 10px;
+  border-radius: 999px;
+  color: #111827;
+  background: linear-gradient(180deg, var(--accent), #fbbf24);
+  box-shadow: 0 8px 20px rgba(251,191,36,0.35);
+}
+.fld { font-size: 12px; color: #cbd5e1; }
+.input {
+  width: 100%; margin-top: 6px;
+  background: rgba(2,6,23,0.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #e5e7eb; border-radius: 14px; padding: 10px 12px;
+  outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(249,115,22,0.25); }
+.checkbox { accent-color: var(--accent); transform: scale(1.1); }
+.cta-primary {
+  width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 4px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  color: white; font-weight: 700;
+  background: linear-gradient(90deg, var(--accent), #fb923c);
+  box-shadow: 0 12px 30px rgba(249,115,22,0.35), inset 0 1px 0 rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: transform .05s ease, filter .2s ease;
+}
+.cta-primary:active { transform: translateY(1px); }
+.nav-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px; border-radius: 999px; font-size: 14px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  color: #e2e8f0;
+}
+.preset {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; border-radius: 14px;
+  background: rgba(2,6,23,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: background .2s ease, border-color .2s ease;
+}
+.preset:hover { background: rgba(2,6,23,0.9); border-color: rgba(255,255,255,0.2); }
+.kbd { font-size: 12px; color: #94a3b8; }
+
+/* Plan */
+.summary-bar {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+.summary-chip {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 14px; padding: 10px 12px;
+}
+.chip-label { display:block; font-size: 11px; color: #9ca3af; }
+.chip-value { font-weight: 700; }
+.day-card {
+  border-radius: 18px; padding: 14px;
+  background: rgba(2,6,23,0.7);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+}
+.pill {
+  display: inline-flex; gap: 8px; align-items: center;
+  font-size: 12px; padding: 6px 10px; border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.pill .sep { opacity: .55; }
+.meal {
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px; padding: 10px 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+}
+.macro-line {
+  margin-top: 6px; display: flex; gap: 10px; flex-wrap: wrap;
+  font-size: 12px; color: #cbd5e1;
+}
+
+/* Grocery */
+.aisle { margin-top: 18px; }
+.aisle-title {
+  text-transform: uppercase; letter-spacing: .14em; font-size: 12px;
+  color: #94a3b8; margin-bottom: 6px;
+}
+.g-item {
+  display: flex; align-items:center; justify-content: space-between;
+  gap: 10px; padding: 10px 12px; border-radius: 14px;
+  background: rgba(2,6,23,0.7); border: 1px solid rgba(255,255,255,0.12);
+}
+.insta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: #fb923c; text-decoration: underline;
+}
+.btn-soft {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:12px; font-size:14px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+}

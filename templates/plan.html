@@ -1,59 +1,100 @@
-
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-6xl mx-auto px-4 py-6">
-  <div class="mb-6">
-    <h1 class="text-xl font-bold">Your 7‑Day Plan</h1>
-    <p class="text-slate-300 mt-1">
-      Target: <b>{{ plan.calories }}</b> kcal/day • Protein target: <b>{{ plan.protein_target }} g</b>
-      {% if plan.bmr %} • BMR: <b>{{ plan.bmr }}</b>{% endif %}
-      {% if plan.tdee %} • TDEE: <b>{{ plan.tdee }}</b>{% endif %}
-      • Diet: {{ 'Low‑carb' if plan.low_carb else '40/30/30' }}
-    </p>
-  </div>
-
-  <div class="grid md:grid-cols-2 gap-4">
-    {% for day in plan.days %}
-    <div class="rounded-2xl bg-slate-900/60 ring-1 ring-white/10 p-4">
-      <div class="flex items-center justify-between mb-2">
-        <h2 class="font-semibold">Day {{ loop.index }}</h2>
-        <div class="text-sm text-slate-300">{{ day.total_protein }} g • ~{{ day.total_calories|int }} kcal</div>
+<a id="results"></a>
+<section class="relative">
+  <div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Summary Bar -->
+    <div class="summary-bar">
+      <div class="summary-chip">
+        <span class="chip-label">Target</span>
+        <span class="chip-value">{{ plan.calories }} kcal / day</span>
       </div>
-      <div class="space-y-2">
-        {% for m in day.meals %}
-        <div class="rounded-xl bg-slate-800/70 border border-slate-700 p-3">
-          <div class="text-sm font-medium">{{ m.title }}</div>
-          <div class="text-xs text-slate-300 mt-1">P {{ m.macros.P }} • C {{ m.macros.C }} • F {{ m.macros.F }} • K {{ m.macros.K }}</div>
-        </div>
-        {% endfor %}
+      <div class="summary-chip">
+        <span class="chip-label">Protein</span>
+        <span class="chip-value">{{ plan.protein_target }} g/day</span>
+      </div>
+      {% if plan.bmr %}
+      <div class="summary-chip">
+        <span class="chip-label">BMR</span>
+        <span class="chip-value">{{ plan.bmr }}</span>
+      </div>
+      {% endif %}
+      {% if plan.tdee %}
+      <div class="summary-chip">
+        <span class="chip-label">TDEE</span>
+        <span class="chip-value">{{ plan.tdee }}</span>
+      </div>
+      {% endif %}
+      <div class="summary-chip">
+        <span class="chip-label">Diet</span>
+        <span class="chip-value">{{ 'Low‑carb' if plan.low_carb else '40/30/30' }}</span>
+      </div>
+      <div class="summary-chip">
+        <span class="chip-label">Weekly Cost</span>
+        <span class="chip-value">${{ '%.2f'|format(plan.total_cost or 0) }}</span>
       </div>
     </div>
-    {% endfor %}
-  </div>
 
-  <div class="mt-8">
-    <h3 class="text-lg font-semibold mb-2">Smart Grocery List</h3>
-    {% if plan.grocery %}
-      {% for aisle, items in plan.grocery.items() %}
-        <div class="mb-4">
-          <div class="text-sm uppercase tracking-wide text-slate-400 mb-2">{{ aisle }}</div>
-          <div class="grid sm:grid-cols-2 gap-2">
-          {% for it in items %}
-            <div class="flex items-center justify-between rounded-xl bg-slate-900/70 border border-slate-800 px-3 py-2">
-              <div class="text-sm">{{ it.name }} <span class="text-slate-400 text-xs">({{ it.package }})</span></div>
-              <a class="text-xs underline text-orange-400 hover:text-orange-300" target="_blank" href="{{ it.instacart_url }}">Open in Instacart</a>
-            </div>
-          {% endfor %}
+    <!-- Plan Grid -->
+    <div class="grid md:grid-cols-2 gap-5 mt-6">
+      {% for day in plan.days %}
+      <div class="day-card">
+        <div class="flex items-center justify-between mb-2">
+          <h2 class="font-semibold">Day {{ loop.index }}</h2>
+          <div class="pill">
+            <span>{{ day.total_protein }} g</span>
+            <span class="sep">•</span>
+            <span>{{ day.total_calories|int }} kcal</span>
           </div>
         </div>
-      {% endfor %}
-      <div class="mt-4 flex gap-3">
-        <a href="/export/plan.pdf" class="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 text-sm">Download Plan PDF</a>
-        <a href="/export/grocery.pdf" class="rounded-xl bg-slate-800 hover:bg-slate-700 px-4 py-2 text-sm">Download Grocery PDF</a>
+        <div class="space-y-2">
+          {% for m in day.meals %}
+          <div class="meal">
+            <div class="text-sm font-medium">{{ m.title }}</div>
+            <div class="macro-line">
+              <span>P {{ m.macros.P }}</span>
+              <span>C {{ m.macros.C }}</span>
+              <span>F {{ m.macros.F }}</span>
+              <span>K {{ m.macros.K }}</span>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
-    {% else %}
-      <p>No grocery items generated.</p>
-    {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Grocery -->
+    <div class="mt-10">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-lg font-semibold">Smart Grocery List</h3>
+        <div class="flex gap-2">
+          <a href="/export/plan.pdf" class="btn-soft">Download Plan PDF</a>
+          <a href="/export/grocery.pdf" class="btn-soft">Download Grocery PDF</a>
+        </div>
+      </div>
+
+      {% if plan.grocery %}
+        {% for aisle, items in plan.grocery.items() %}
+          <div class="aisle">
+            <div class="aisle-title">{{ aisle }}</div>
+            <div class="grid sm:grid-cols-2 gap-2">
+            {% for it in items %}
+              <div class="g-item">
+                <div class="truncate pr-3">
+                  <div class="text-sm font-medium truncate">{{ it.name }}</div>
+                  <div class="text-xs text-slate-400">{{ it.package }}</div>
+                </div>
+                <a class="insta" target="_blank" href="{{ it.instacart_url }}">Open</a>
+              </div>
+            {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="text-slate-400">No grocery items generated.</p>
+      {% endif %}
+    </div>
   </div>
-</div>
+</section>
 {% endblock %}

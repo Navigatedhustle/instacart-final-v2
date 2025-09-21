@@ -1,37 +1,58 @@
-
 <!doctype html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ BRAND_NAME }}</title>
-  <link rel="icon" href="{{ FAVICON }}">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{{ APP_NAME or "ActivBlaze" }} — {{ BRAND_NAME or "ActivBlaze Corporate Cut" }}</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="{{ FAVICON or '/static/favicon.png' }}"/>
+  <meta name="color-scheme" content="dark"/>
   <style>
-    :root{ --accent: {{ ACCENT|default('#f97316') }}; }
-    body{background: radial-gradient(1200px 600px at 20% -10%, rgba(249,115,22,.25), transparent), 
-                     radial-gradient(900px 500px at 90% 10%, rgba(14,165,233,.18), transparent), #0b1220; color:#e5e7eb}
-    .glass{backdrop-filter: blur(8px); background: rgba(15, 23, 42, 0.7); border:1px solid rgba(148,163,184,.25); border-radius:1rem}
-    .btn-primary{background:var(--accent);color:#0b1220;border-radius:0.9rem;padding:0.9rem 1.2rem;font-weight:700;
-                 box-shadow:0 14px 32px rgba(249,115,22,.35); transition: transform .12s ease, box-shadow .12s ease}
-    .btn-primary:hover{transform: translateY(-1px); box-shadow:0 20px 40px rgba(249,115,22,.45)}
-    .btn-secondary{border:1px solid #334155;border-radius:.75rem;padding:.5rem .75rem;color:#e5e7eb; transition: background .12s}
-    .btn-secondary:hover{background:#0f172a}
-    .card{background:rgba(15,23,42,.9); border:1px solid #1f2a44; border-radius:1rem; padding:1rem; box-shadow: 0 10px 30px rgba(0,0,0,.25)}
-    .checkbox{width:1rem;height:1rem;border:1px solid #475569;border-radius:.25rem;background:#0b1220}
+    :root {
+      --accent: {{ ACCENT or '#f97316' }};
+      color-scheme: dark;
+    }
   </style>
+  <link rel="stylesheet" href="/static/styles.css"/>
 </head>
-<body class="min-h-screen">
-<header class="max-w-7xl mx-auto py-6 px-4 flex items-center justify-between">
-  <div class="flex items-center gap-3">
-    <img src="{{ FAVICON }}" alt="logo" class="w-8 h-8 rounded">
-    <div class="font-extrabold text-xl tracking-tight">{{ BRAND_NAME }}</div>
-  </div>
-  <nav class="text-sm opacity-80 flex items-center gap-6"><!-- Terms removed per request --></nav>
-</header>
-<main class="max-w-7xl mx-auto px-4 pb-12">
-  {% block content %}{% endblock %}
-  <footer class="py-10 text-center opacity-60 text-sm">© {{ now.year }} {{ BRAND_NAME }}</footer>
-</main>
+<body class="min-h-screen bg-slate-950 text-slate-100 bg-grid">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/55 border-b border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-[color:var(--accent)] to-amber-400 shadow-lg ring-1 ring-white/30"></div>
+        <div class="leading-tight">
+          <div class="text-sm text-slate-300 uppercase tracking-wider">ActivBlaze</div>
+          <div class="font-semibold text-lg">Corporate Cut</div>
+        </div>
+      </a>
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="/" class="nav-pill">Planner</a>
+        <a href="#results" class="nav-pill">Results</a>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="/" class="inline-flex items-center gap-2 rounded-xl bg-white/5 hover:bg-white/10 px-3 py-2 text-sm ring-1 ring-white/10 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-75" viewBox="0 0 24 24" fill="currentColor"><path d="M14 3H6a2 2 0 0 0-2 2v6h2V5h8V3Zm4 4h-4a2 2 0 0 0-2 2v12l4-2 4 2V9a2 2 0 0 0-2-2Z"/></svg>
+          New Plan
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page content -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-slate-400">
+      <div class="flex items-center gap-2">
+        <span class="opacity-70">©</span> <span>{{ (now or '')|string()[:10] }}</span>
+        <span class="mx-2">·</span>
+        <span>ActivBlaze Corporate Cut</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
